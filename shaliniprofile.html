@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shalini Suman — Principal Product Manager, Enterprise SaaS, AI-driven platforms and global digital transformation." />
+  <title>Shalini Suman — Product Leader</title>
+
+  <style>
+    :root{
+      --bg:#f7f8fa;
+      --surface:#ffffff;
+      --surface-2:#f0f3f6;
+      --ink:#17202a;
+      --muted:#65717d;
+      --line:#dfe5ea;
+      --accent:#1a73e8;
+      --accent-2:#34a853;
+      --warm:#f9ab00;
+      --red:#ea4335;
+      --navy:#193542;
+      --shadow:0 14px 40px rgba(25,53,66,.09);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px));margin:auto}
+
+    /* Navigation */
+    .nav-wrap{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      padding:14px 0;
+      background:rgba(247,248,250,.82);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(223,229,234,.7);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:800;letter-spacing:-.04em;font-size:19px}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;gap:26px;align-items:center}
+    .nav-links a{font-size:14px;color:var(--muted);font-weight:600}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta{
+      padding:10px 16px;border:1px solid var(--line);border-radius:999px;
+      background:var(--surface);font-size:14px;font-weight:700
+    }
+
+    /* Hero */
+    .hero{padding:150px 0 80px;position:relative;overflow:hidden}
+    .hero::before{
+      content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+      right:-220px;top:70px;background:rgba(26,115,232,.08);filter:blur(4px)
+    }
+    .hero-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:70px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:7px 12px;border-radius:999px;background:#e8f0fe;color:#174ea6;
+      font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase
+    }
+    .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+    h1{
+      font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-.065em;
+      margin:24px 0 22px;max-width:820px
+    }
+    .hero-lead{
+      font-size:clamp(19px,2vw,25px);line-height:1.42;color:#394550;
+      max-width:760px;margin:0 0 28px
+    }
+    .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 34px}
+    .chip{
+      padding:9px 13px;background:var(--surface);border:1px solid var(--line);
+      border-radius:999px;font-size:13px;font-weight:650;color:#485560
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:13px 18px;border-radius:12px;font-weight:750;font-size:14px;
+      border:1px solid var(--line);background:var(--surface)
+    }
+    .btn.primary{background:var(--ink);color:white;border-color:var(--ink)}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(23,32,42,.1)}
+
+    .hero-card{
+      position:relative;background:var(--navy);color:white;border-radius:30px;
+      padding:30px;box-shadow:var(--shadow);overflow:hidden
+    }
+    .hero-card::after{
+      content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(255,255,255,.16);
+      border-radius:50%;right:-55px;bottom:-55px
+    }
+    .monogram{
+      width:70px;height:70px;border-radius:20px;background:white;color:var(--navy);
+      display:grid;place-items:center;font-size:25px;font-weight:900;margin-bottom:55px
+    }
+    .hero-card small{color:#b8c8cf;font-weight:700}
+    .hero-card h2{font-size:25px;line-height:1.2;margin:6px 0 12px;letter-spacing:-.03em}
+    .hero-card p{color:#d2dde2;margin:0}
+    .location{margin-top:25px;font-size:13px;color:#b8c8cf}
+
+    /* Sections */
+    section{padding:90px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
+    .kicker{font-size:12px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+    h2.section-title{font-size:clamp(31px,4vw,48px);line-height:1.05;letter-spacing:-.055em;margin:0}
+    .section-intro{max-width:520px;color:var(--muted);margin:0}
+
+    /* Impact */
+    .impact{background:var(--surface)}
+    .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .metric{padding:30px 26px;min-height:150px;border-right:1px solid var(--line)}
+    .metric:last-child{border-right:0}
+    .metric strong{display:block;font-size:39px;letter-spacing:-.055em;line-height:1.05}
+    .metric span{display:block;color:var(--muted);font-size:13px;margin-top:9px}
+
+    /* Focus cards */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:28px;transition:.25s ease
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .icon{
+      width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+      background:var(--surface-2);margin-bottom:24px;font-weight:900
+    }
+    .card h3{margin:0 0 9px;font-size:20px;letter-spacing:-.025em}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+    .tag{font-size:11px;padding:5px 9px;background:var(--surface-2);border-radius:999px;color:#55616c}
+
+    /* Experience */
+    .timeline{position:relative;margin-left:9px}
+    .timeline::before{
+      content:"";position:absolute;left:9px;top:5px;bottom:5px;width:1px;background:var(--line)
+    }
+    .role{position:relative;padding-left:48px;padding-bottom:42px}
+    .role:last-child{padding-bottom:0}
+    .dot{
+      position:absolute;left:3px;top:6px;width:13px;height:13px;border-radius:50%;
+      background:var(--surface);border:3px solid var(--accent);z-index:1
+    }
+    .role-top{display:flex;justify-content:space-between;gap:20px;align-items:baseline}
+    .company{font-size:23px;font-weight:850;letter-spacing:-.03em}
+    .dates{font-size:12px;color:var(--muted);font-weight:700;white-space:nowrap}
+    .role-title{font-weight:750;margin:2px 0 10px}
+    .role p{margin:0;color:var(--muted);max-width:920px;font-size:14px}
+    .role ul{margin:13px 0 0;padding-left:18px;color:#53606b;font-size:14px}
+    .role li{margin:6px 0}
+    .role .highlight{color:var(--ink);font-weight:700}
+
+    /* Product */
+    .product{background:var(--navy);color:white}
+    .product .kicker{color:#8ab4f8}
+    .product .section-intro{color:#b9c8cf}
+    .product-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+    .product-main,.product-side{
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);
+      border-radius:var(--radius);padding:32px
+    }
+    .product-main h3{font-size:34px;letter-spacing:-.045em;line-height:1.1;margin:0 0 15px}
+    .product-main p{color:#c6d2d7}
+    .product-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+    .pstat{padding:17px;border:1px solid rgba(255,255,255,.1);border-radius:15px}
+    .pstat strong{display:block;font-size:25px}
+    .pstat span{font-size:11px;color:#b9c8cf}
+    .product-side h4{margin:0 0 16px}
+    .stack{display:flex;flex-wrap:wrap;gap:8px}
+    .stack span{padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.08);font-size:12px;color:#d9e3e7}
+    .product-side .note{margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#b9c8cf}
+
+    /* Domains */
+    .domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .domain{
+      padding:25px;background:var(--surface);border:1px solid var(--line);border-radius:18px
+    }
+    .domain b{display:block;margin-bottom:7px}
+    .domain span{font-size:13px;color:var(--muted)}
+
+    /* Education */
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .edu-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+    .edu-card h3{margin:0 0 7px;font-size:18px}
+    .edu-card p{margin:0;color:var(--muted);font-size:13px}
+    .cert-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .cert{padding:8px 11px;background:var(--surface-2);border-radius:10px;font-size:12px;font-weight:700}
+
+    /* Contact */
+    .contact-box{
+      background:linear-gradient(135deg,#e8f0fe,#f4f7f8);border:1px solid #d7e3f5;
+      border-radius:30px;padding:45px;display:flex;align-items:center;justify-content:space-between;gap:30px
+    }
+    .contact-box h2{font-size:42px;line-height:1.05;letter-spacing:-.055em;margin:0 0 10px}
+    .contact-box p{margin:0;color:var(--muted)}
+    .contact-links{display:flex;gap:10px;flex-wrap:wrap}
+
+    footer{padding:30px 0 45px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .hero-grid,.product-grid{grid-template-columns:1fr}
+      .hero-card{max-width:600px}
+      .impact-grid{grid-template-columns:repeat(2,1fr)}
+      .metric:nth-child(2){border-right:0}
+      .metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .cards{grid-template-columns:1fr}
+      .domain-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-box{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:650px){
+      .container{width:min(var(--max),calc(100% - 28px))}
+      .nav-links{display:none}
+      .hero{padding-top:120px}
+      section{padding:65px 0}
+      .impact-grid{grid-template-columns:1fr}
+      .metric{border-right:0!important;border-bottom:1px solid var(--line)}
+      .metric:last-child{border-bottom:0}
+      .section-head{display:block}
+      .section-intro{margin-top:15px}
+      .role-top{display:block}
+      .dates{display:block;margin-top:3px}
+      .product-stats{grid-template-columns:1fr}
+      .domain-grid,.edu-grid{grid-template-columns:1fr}
+      .contact-box{padding:30px}
+      .contact-box h2{font-size:34px}
+      footer{display:block}
+      footer div+div{margin-top:8px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .card,.btn{transition:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">shalini<span>.</span></a>
+        <div class="nav-links">
+          <a href="#impact">Impact</a>
+          <a href="#experience">Experience</a>
+          <a href="#product">Product</a>
+          <a href="#education">Education</a>
+        </div>
+        <a class="nav-cta" href="mailto:aricentshalini@gmail.com">Let's connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><i></i> Principal Product Manager</div>
+          <h1>Building products that turn complex problems into measurable impact.</h1>
+          <p class="hero-lead">
+            Product leader with 18+ years of experience building and scaling enterprise SaaS,
+            AI-driven products and large-scale digital transformation initiatives across healthcare,
+            telecom, energy and public sector domains.
+          </p>
+
+          <div class="hero-meta">
+            <span class="chip">Enterprise SaaS</span>
+            <span class="chip">AI / ML</span>
+            <span class="chip">Digital Transformation</span>
+            <span class="chip">Global Product Launches</span>
+            <span class="chip">APAC · Europe · Middle East</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#experience">Explore my journey →</a>
+            <a class="btn" href="https://www.linkedin.com/in/shalini-suman-26102723" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="monogram">SS</div>
+          <small>PRODUCT LEADERSHIP</small>
+          <h2>Strategy → Discovery → Roadmap → Launch → Scale</h2>
+          <p>Customer-centric product strategy, cross-functional leadership and outcome-focused execution.</p>
+          <div class="location">Bengaluru, Karnataka, India</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="impact" id="impact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">By the numbers</div>
+            <h2 class="section-title">Impact at scale.</h2>
+          </div>
+          <p class="section-intro">A career spanning products, platforms and transformation programs used across global organizations.</p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="metric"><strong>18+</strong><span>Years in product, business analysis & digital transformation</span></div>
+          <div class="metric"><strong>$48M+</strong><span>Measurable business / operational impact</span></div>
+          <div class="metric"><strong>10M+</strong><span>Citizens served by a public-sector healthcare platform</span></div>
+          <div class="metric"><strong>100+</strong><span>Global clients served by the current digital signage platform</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">What I do</div>
+            <h2 class="section-title">From customer insight to product outcome.</h2>
+          </div>
+          <p class="section-intro">A blend of strategic product thinking, technical depth and hands-on execution built over multiple industries.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Product Strategy</h3>
+            <p>Own product vision, strategy and roadmap; translate customer and market insights into prioritized opportunities and measurable outcomes.</p>
+            <div class="tag-row"><span class="tag">Vision</span><span class="tag">Roadmap</span><span class="tag">GTM</span><span class="tag">KPIs</span></div>
+          </article>
+
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>AI-driven Innovation</h3>
+            <p>Drive AI/ML-led capabilities including intelligent automation, predictive scheduling, content targeting, computer vision and conversational assistants.</p>
+            <div class="tag-row"><span class="tag">AI/ML</span><span class="tag">Automation</span><span class="tag">Analytics</span><span class="tag">Computer Vision</span></div>
+          </article>
+
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Cross-functional Leadership</h3>
+            <p>Connect customers, business, design, engineering and QA through discovery, backlog prioritization, refinement, delivery and continuous improvement.</p>
+            <div class="tag-row"><span class="tag">Discovery</span><span class="tag">UX</span><span class="tag">Agile</span><span class="tag">Stakeholders</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product" id="product">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Current product</div>
+            <h2 class="section-title">Making digital experiences smarter.</h2>
+          </div>
+          <p class="section-intro">Product strategy and roadmap leadership for a cloud-native digital signage platform at Wipro.</p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product-main">
+            <h3>Digital Signage Platform</h3>
+            <p>
+              Leading product strategy and roadmap for a digital signage platform serving 100+ clients
+              globally across retail, healthcare, transport and sports.
+            </p>
+            <p>
+              The work spans GTM strategy, market research, customer demos and discovery, roadmap
+              prioritization, UI/UX collaboration, engineering delivery and strategic B2B partnerships.
+            </p>
+
+            <div class="product-stats">
+              <div class="pstat"><strong>~30%</strong><span>Enterprise customer acquisition growth</span></div>
+              <div class="pstat"><strong>~20%</strong><span>Improvement in customer retention</span></div>
+              <div class="pstat"><strong>~50%</strong><span>Reduction in manual operations through automation</span></div>
+            </div>
+          </div>
+
+          <aside class="product-side">
+            <h4>Innovation themes</h4>
+            <div class="stack">
+              <span>AI / ML</span>
+              <span>Computer Vision</span>
+              <span>Predictive Scheduling</span>
+              <span>Intelligent Content Targeting</span>
+              <span>Content Automation</span>
+              <span>Conversational Assistants</span>
+              <span>Omnichannel Experiences</span>
+            </div>
+            <div class="note">
+              The product journey combines customer pain-point discovery with prioritization,
+              backlog management and close collaboration with UI/UX and engineering teams.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Career</div>
+            <h2 class="section-title">18+ years of building and evolving.</h2>
+          </div>
+          <p class="section-intro">A progression from business analysis and telecom platforms to product leadership across enterprise SaaS and digital transformation.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="role">
+            <span class="dot"></span>
+            <div class="role-top"><div class="company">Wipro</div><div class="dates">Jul 2024 — Present</div></div>
+            <div class="role-title">Principal Product Manager · Bengaluru</div>
+            <ul>
+              <li>Lead product strategy and roadmap for a digital signage platform serving <span class="highlight">100+ global clients</span>.</li>
+              <li>Spearhead GTM strategy, market research and continuous product improvements.</li>
+              <li>Integrate AI/ML for predictive signage scheduling and intelligent content targeting.</li>
+              <li>Collaborate with computer vision partners to enhance customer engagement and deliver omnichannel retail experiences.</li>
+              <li>Run customer demos, identify pain points, shape the roadmap and prioritize the product backlog with UI/UX and engineering.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <span class="dot"></span>
+            <div class="role-top"><div class="company">IBM</div><div class="dates">Oct 2021 — Jul 2024</div></div>
+            <div class="role-title">Product Manager · Bengaluru</div>
+            <ul>
+              <li>Worked with Baxter on Salesforce products and solutions supporting critical care, nutrition, hospital, surgical and pharmaceutical needs.</li>
+              <li>Led backlog refinement with engineering and QA teams to deliver roadmap capabilities.</li>
+              <li>Worked with Shell on digitalization of field workers across upstream/downstream oil & gas and capital projects.</li>
+              <li>Owned global deployment of mobile print solutions for <span class="highlight">4,000+ users</span> across Shell assets.</li>
+              <li>Performed market scans across <span class="highlight">44 assets</span>, evaluated external vendors and engaged end users to identify pain points and opportunities.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <span class="dot"></span>
+            <div class="role-top"><div class="company">CGI</div><div class="dates">Dec 2015 — Sep 2021</div></div>
+            <div class="role-title">Product Owner & Product Manager · Bengaluru</div>
+            <ul>
+              <li>Owned product roadmaps, quarterly releases, success KPIs, RACI and prioritized backlogs.</li>
+              <li>Worked directly with customers, engineering, business owners and cross-functional teams from discovery through delivery.</li>
+              <li>Worked on <span class="highlight">Traserva</span>, a public-sector social welfare product used across Swedish municipalities serving <span class="highlight">10M+ residents and 290 municipalities</span>.</li>
+              <li>Worked on <span class="highlight">Helmi</span>, a student-management product with <span class="highlight">50K+ active learners, 3K+ learning centers and 5K+ teachers</span>.</li>
+              <li>Also worked on Raindance ERP and telecom OSS solutions for Bell Canada.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <span class="dot"></span>
+            <div class="role-top"><div class="company">Ericsson</div><div class="dates">Jul 2010 — Aug 2015</div></div>
+            <div class="role-title">Product Owner & Lead Business Analyst · India</div>
+            <ul>
+              <li>Worked on international OSS/BSS programs for customers including DU Dubai, Etisalat Egypt and Deutsche Telekom Germany.</li>
+              <li>Built expertise across network management, order management, OSS service fulfilment & assurance and charging systems.</li>
+              <li>Coordinated two independent teams comprising developers, testers and business analysts.</li>
+              <li>Facilitated Agile ceremonies and managed Scrum activities for two products simultaneously.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <span class="dot"></span>
+            <div class="role-top"><div class="company">Aricent</div><div class="dates">Jul 2008 — Jul 2010</div></div>
+            <div class="role-title">Business Analyst · Gurugram</div>
+            <ul>
+              <li>Worked in the Cisco business unit across requirement gathering, functional analysis, testing and high-level design.</li>
+              <li>Translated requirements into user stories, managed backlog refinement and supported Agile Scrum delivery.</li>
+              <li>Worked on network inventory management for telecom clients including Bharti Airtel, Reliance and Airtel Bangladesh.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Industry perspective</div>
+            <h2 class="section-title">Deep domain range.</h2>
+          </div>
+          <p class="section-intro">Experience across industries where technology, operations and user needs intersect.</p>
+        </div>
+
+        <div class="domain-grid">
+          <div class="domain"><b>Healthcare</b><span>Salesforce solutions, public-sector healthcare and citizen-facing platforms</span></div>
+          <div class="domain"><b>Telecom</b><span>OSS/BSS, order management, service fulfilment, assurance and network management</span></div>
+          <div class="domain"><b>Energy</b><span>Field-worker digitalization across upstream, downstream, oil & gas and capital projects</span></div>
+          <div class="domain"><b>Public Sector</b><span>Social welfare, education management, ERP and municipal platforms</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Education & credentials</div>
+            <h2 class="section-title">Always learning.</h2>
+          </div>
+          <p class="section-intro">Formal product-management education complemented by agile, business-analysis and AI-focused credentials.</p>
+        </div>
+
+        <div class="edu-grid">
+          <div class="edu-card">
+            <h3>XLRI Delhi-NCR</h3>
+            <p>Product Management · Nov 2023 — May 2024</p>
+            <div class="cert-list">
+              <span class="cert">Product Management</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <h3>Birla Institute of Technology, Mesra</h3>
+            <p>Bachelor of Engineering — Electrical, Electronics & Communications Engineering · 2004 — 2008</p>
+          </div>
+
+          <div class="edu-card">
+            <h3>Professional certifications</h3>
+            <div class="cert-list">
+              <span class="cert">AI for Product Management</span>
+              <span class="cert">IBM Agile Advocate</span>
+              <span class="cert">PSPO</span>
+              <span class="cert">IIBA Business Analysis Certified Professional</span>
+              <span class="cert">Chemicals & Petroleum Insights and Solutions — Silver</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <h3>Core skills</h3>
+            <div class="cert-list">
+              <span class="cert">Agile Methodologies</span>
+              <span class="cert">Go-to-Market Strategy</span>
+              <span class="cert">Market Research</span>
+              <span class="cert">Project Management</span>
+              <span class="cert">Product Discovery</span>
+              <span class="cert">Roadmapping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="kicker">Let's build something meaningful</div>
+            <h2>Have a complex product problem?</h2>
+            <p>I'm open to conversations around product leadership, enterprise SaaS, AI-driven products and digital transformation.</p>
+          </div>
+          <div class="contact-links">
+            <a class="btn primary" href="mailto:aricentshalini@gmail.com">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/in/shalini-suman-26102723" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div>© <span id="year"></span> Shalini Suman</div>
+    <div>Principal Product Manager · Enterprise SaaS · AI-driven Platforms</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
