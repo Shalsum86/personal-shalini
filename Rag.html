@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAG Lab — Interactive Simulator</title>
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--ink:#17202a;--muted:#66737f;--line:#dfe5eb;--blue:#1a73e8;--blue2:#e8f0fe;--green:#188038;--green2:#e6f4ea;--purple:#7b4bc4;--purple2:#f2ebfb;--amber:#b06000;--amber2:#fef7e0;--shadow:0 12px 34px #19354212;--r:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+button,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:#f6f8fbd9;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav{height:62px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;letter-spacing:-.05em}.logo span{color:var(--blue)}.pill{font-size:12px;font-weight:800;color:#174ea6;background:var(--blue2);padding:7px 11px;border-radius:999px}
+.hero{padding:62px 0 34px}.eyebrow{color:var(--blue);font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+h1{font-size:clamp(42px,6vw,70px);line-height:.98;letter-spacing:-.065em;max-width:900px;margin:12px 0 17px}.hero p{font-size:18px;color:var(--muted);max-width:800px;margin:0}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:25px}.flow b{font-size:12px;background:#fff;border:1px solid var(--line);padding:8px 11px;border-radius:999px}.flow i{font-style:normal;color:#9aa5af}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.panelhead{padding:23px 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}.panelhead h2{margin:0;font-size:20px;letter-spacing:-.03em}.panelhead p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:4px;background:#eef2f5;padding:4px;border-radius:10px}.tabs button{border:0;background:transparent;padding:8px 11px;border-radius:8px;font-size:12px;font-weight:800;color:var(--muted)}.tabs button.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px #00000010}
+.stage{padding:25px}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{border:1px solid var(--line);background:#fbfcfd;border-radius:15px;padding:16px;min-height:142px;transition:.2s}.step.on{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue2)}.step.done{border-color:#b9dfc3;background:#fbfefc}.num{width:28px;height:28px;border-radius:9px;background:#edf1f4;display:grid;place-items:center;font-size:11px;font-weight:900;margin-bottom:12px}.step.on .num{background:var(--blue);color:#fff}.step.done .num{background:var(--green);color:#fff}.step h3{font-size:14px;margin:0 0 5px}.step p{font-size:11px;color:var(--muted);margin:0}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:850}.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.btn.blue{background:var(--blue);color:#fff;border-color:var(--blue)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.explain{margin-top:16px;background:var(--blue2);border:1px solid #d4e3fb;border-radius:13px;padding:14px}.explain strong{display:block;font-size:13px}.explain span{display:block;color:#52606b;font-size:12px;margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:17px}.box{border:1px solid var(--line);border-radius:16px;padding:19px;background:#fff}.box h3{margin:0;font-size:16px}.hint{font-size:11px;color:var(--muted);margin:3px 0 14px}
+.doc{padding:12px;border:1px solid var(--line);border-radius:11px;margin:8px 0;cursor:pointer}.doc:hover,.doc.sel{border-color:var(--blue);background:#f8fbff}.doc strong{font-size:12px}.doc p{font-size:11px;color:var(--muted);margin:3px 0 0}.chunk{border:1px dashed #c9d3dc;border-radius:9px;padding:9px;margin-top:7px;font-size:11px;background:#fafbfc}.chunk b{display:block;font-size:9px;color:var(--blue);letter-spacing:.06em}
+.embed{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.embed span{font:10px ui-monospace,monospace;background:#eef2f5;padding:4px 6px;border-radius:5px}
+textarea{width:100%;min-height:100px;border:1px solid var(--line);border-radius:11px;padding:12px;resize:vertical;outline:none;font-size:13px}textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue2)}
+.retrieval{margin-top:13px;padding:13px;border:1px solid var(--line);background:#f8fafc;border-radius:12px}.result{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px;margin-top:7px}.rhead{display:flex;justify-content:space-between;font-size:10px;font-weight:900}.score{color:var(--green)}.result p{font-size:10px;color:var(--muted);margin:3px 0 0}
+.aug{margin-top:12px;background:var(--purple2);border:1px solid #dfd1f2;padding:13px;border-radius:11px}.label{font-size:9px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}.aug .label{color:var(--purple)}.aug p{font-size:11px;margin:5px 0 0}.answer{margin-top:12px;background:var(--green2);border:1px solid #c8e6cf;padding:14px;border-radius:11px}.answer .label{color:var(--green)}.answer h4{margin:5px 0;font-size:15px}.answer p{font-size:11px;margin:0}
+.lesson{padding:65px 0}.lesson h2{font-size:38px;letter-spacing:-.055em;margin:8px 0}.lesson>p{color:var(--muted);max-width:760px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:22px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:19px}.card small{color:var(--blue);font-weight:900}.card h3{font-size:17px;margin:7px 0}.card p{font-size:12px;color:var(--muted);margin:0}
+.callout{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px}.callout strong{font-size:14px}.callout p{font-size:12px;color:var(--muted);margin:4px 0 0}
+footer{padding:20px 0 45px;color:var(--muted);font-size:11px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:0 14px}.panelhead{display:block}.tabs{margin-top:12px;width:max-content}.steps{grid-template-columns:1fr}.hero{padding-top:42px}.flow{gap:5px}}
+</style>
+</head>
+<body>
+<header><nav class="wrap"><div class="logo">RAG<span>·</span>LAB</div><div class="pill">Interactive learning simulator</div></nav></header>
+
+<main>
+<section class="hero"><div class="wrap">
+<div class="eyebrow">Retrieval-Augmented Generation</div>
+<h1>Understand RAG by watching the data move.</h1>
+<p>Build a tiny knowledge base, see documents become chunks and embeddings, retrieve relevant context, then watch that context get passed to an LLM to generate a grounded answer.</p>
+<div class="flow"><b>Documents</b><i>→</i><b>Chunk</b><i>→</i><b>Embed</b><i>→</i><b>Store</b><i>→</i><b>Retrieve</b><i>→</i><b>Augment</b><i>→</i><b>Generate</b></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="panel">
+<div class="panelhead"><div><h2>RAG pipeline simulator</h2><p>Everything runs in this browser. No API key or backend required.</p></div>
+<div class="tabs"><button id="buildTab" class="active" onclick="mode('build')">Build knowledge base</button><button id="askTab" onclick="mode('ask')">Ask a question</button></div></div>
+
+<div class="stage">
+<div class="steps">
+<div class="step" data-s="1"><div class="num">1</div><h3>Documents</h3><p>Source knowledge such as policies, manuals, PDFs or webpages.</p></div>
+<div class="step" data-s="2"><div class="num">2</div><h3>Chunking</h3><p>Split large documents into smaller retrievable pieces.</p></div>
+<div class="step" data-s="3"><div class="num">3</div><h3>Embedding</h3><p>Represent each chunk as a numerical vector.</p></div>
+<div class="step" data-s="4"><div class="num">4</div><h3>Vector DB</h3><p>Store vectors together with source text and metadata.</p></div>
+<div class="step" data-s="5"><div class="num">5</div><h3>Retrieve + Generate</h3><p>Find relevant chunks, augment context, then generate an answer.</p></div>
+</div>
+
+<div class="controls"><button id="next" class="btn primary" onclick="next()">Run next step →</button><button class="btn" onclick="all()">Run complete pipeline</button><button class="btn" onclick="reset()">Reset</button></div>
+<div class="explain" id="explain"><strong>Start here</strong><span>Run the pipeline one step at a time to understand what happens during ingestion and retrieval.</span></div>
+
+<div class="grid">
+<div class="box">
+<h3>1. Knowledge base</h3><p class="hint">Select a source document. The simulator will show how it is chunked and represented.</p>
+<div id="docs"></div>
+<div id="chunkArea"></div>
+</div>
+
+<div class="box">
+<h3>2. Query → Retrieval → Answer</h3><p class="hint">Try “How many days can I work remotely?”</p>
+<textarea id="q">How many days can I work remotely?</textarea>
+<div class="controls"><button class="btn blue" onclick="retrieve()">Retrieve relevant chunks</button><button class="btn primary" onclick="generate()">Retrieve + generate</button></div>
+<div id="retrieval" class="retrieval"><span style="font-size:11px;color:var(--muted)">Waiting for a query…</span></div>
+<div id="aug" class="aug" style="display:none"><div class="label">Augmented context sent to LLM</div><p id="augText"></p></div>
+<div id="ans" class="answer" style="display:none"><div class="label">Generated answer</div><h4 id="ansTitle"></h4><p id="ansText"></p></div>
+</div>
+</div>
+</div></div></div></section>
+
+<section class="lesson"><div class="wrap">
+<div class="eyebrow">The gap in your original explanation</div>
+<h2>RAG does not create a “new prompt” from the LLM.</h2>
+<p>The key concept is <b>augmentation</b>: the application retrieves useful external information and places it into the context supplied to the LLM. The LLM then generates the response.</p>
+<div class="cards">
+<div class="card"><small>01 · RETRIEVAL</small><h3>Find the evidence</h3><p>The user's query is represented for search and compared with stored knowledge. The system retrieves the most relevant chunks.</p></div>
+<div class="card"><small>02 · AUGMENTATION</small><h3>Add the evidence</h3><p>The retrieved chunks are combined with the user's question/instructions to form the context sent to the LLM.</p></div>
+<div class="card"><small>03 · GENERATION</small><h3>Generate the answer</h3><p>The LLM uses the supplied context to produce a natural-language response. Retrieval and generation are separate steps.</p></div>
+</div>
+<div class="callout"><strong>Interview-ready definition</strong><p>“RAG is a technique where relevant information is retrieved from an external knowledge source and added as context to a user's query, allowing an LLM to generate a more grounded response.”</p></div>
+</div></section>
+</main>
+<footer><div class="wrap">RAG Lab · Educational browser-only simulator. The vector values and retrieval scores are intentionally simplified to make the concepts visible.</div></footer>
+
+<script>
+const data=[
+{title:"Remote Work Policy",text:"Employees can work remotely up to 3 days per week. Manager approval is required for exceptions."},
+{title:"Leave Policy",text:"Employees receive 24 annual leave days. Requests should normally be submitted 5 working days in advance."},
+{title:"Expense Policy",text:"Business travel expenses must be submitted within 30 days. Receipts are required for claims above the defined threshold."}
+];
+let selected=0,step=0;
+
+function renderDocs(){
+ document.getElementById("docs").innerHTML=data.map((d,i)=>`<div class="doc ${i===selected?"sel":""}" onclick="selectDoc(${i})"><strong>${d.title}</strong><p>${d.text}</p></div>`).join("");
+ renderChunks();
+}
+function selectDoc(i){selected=i;renderDocs()}
+function renderChunks(){
+ const d=data[selected];
+ const words=d.text.split(" "), chunks=[];
+ for(let i=0;i<words.length;i+=12)chunks.push(words.slice(i,i+12).join(" "));
+ document.getElementById("chunkArea").innerHTML=`<div style="font-size:10px;font-weight:900;color:#66737f;margin-top:15px">CHUNKS</div>`+
+ chunks.map((x,i)=>`<div class="chunk"><b>Chunk ${i+1}</b>${x}</div>`).join("")+
+ `<div style="font-size:10px;font-weight:900;color:#66737f;margin-top:12px">SIMULATED EMBEDDING VECTOR</div>
+ <div class="embed">${[.82,-.14,.63,.27,-.51,.91,.08,.44].map(x=>`<span>${x}</span>`).join("")}</div>`;
+}
+const info=[
+["Documents","RAG starts with source knowledge. Your private/company data is not automatically inside the LLM; it has to be made available to the retrieval system."],
+["Chunking","Documents are split into smaller pieces so retrieval can return focused evidence rather than an entire large document."],
+["Embedding","An embedding model converts text into a vector representation that captures useful semantic relationships for search."],
+["Vector DB","The vector is stored with the original chunk and often metadata such as document, page, date or access permissions."],
+["Retrieve + Generate","At query time, relevant chunks are retrieved. Those chunks are added as context to the question, and the LLM generates the final response."]
+];
+function paint(){
+ document.querySelectorAll(".step").forEach((x,i)=>{x.classList.toggle("on",i===step-1);x.classList.toggle("done",i<step-1)});
+}
+function next(){
+ if(step>=5)return;
+ step++;paint();
+ document.getElementById("explain").innerHTML=`<strong>Step ${step}: ${info[step-1][0]}</strong><span>${info[step-1][1]}</span>`;
+ if(step===5){document.getElementById("next").textContent="Pipeline complete ✓";document.getElementById("next").disabled=true}
+}
+function all(){step=0;document.getElementById("next").disabled=false;document.getElementById("next").textContent="Run next step →";const t=setInterval(()=>{next();if(step===5)clearInterval(t)},500)}
+function reset(){step=0;paint();document.getElementById("next").disabled=false;document.getElementById("next").textContent="Run next step →";document.getElementById("explain").innerHTML="<strong>Start here</strong><span>Run the pipeline one step at a time to understand what happens during ingestion and retrieval.</span>";document.getElementById("retrieval").innerHTML='<span style="font-size:11px;color:#66737f">Waiting for a query…</span>';document.getElementById("aug").style.display="none";document.getElementById("ans").style.display="none"}
+function mode(m){
+ document.getElementById("buildTab").classList.toggle("active",m==="build");
+ document.getElementById("askTab").classList.toggle("active",m==="ask");
+ document.getElementById("explain").innerHTML=m==="ask"
+ ?"<strong>Query mode</strong><span>Ask a question and follow the retrieval → augmentation → generation flow.</span>"
+ :"<strong>Ingestion mode</strong><span>Documents are prepared for retrieval by chunking, embedding and storing them.</span>";
+}
+function words(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(x=>x.length>2)}
+function score(q,t){
+ const stop=new Set(["the","how","many","can","what","are","you","for","and","with","work","from"]);
+ const a=words(q).filter(x=>!stop.has(x)),b=words(t);let hits=0;
+ a.forEach(x=>{if(b.some(y=>y===x||y.includes(x)||x.includes(y)))hits++});
+ return a.length?hits/a.length:0;
+}
+function retrieve(){
+ const q=document.getElementById("q").value.trim();if(!q)return null;
+ const ranked=data.map(d=>({d,s:score(q,d.text)})).sort((a,b)=>b.s-a.s);
+ document.getElementById("retrieval").innerHTML=`<div style="font-size:11px;font-weight:850">Query → <span style="color:#1a73e8">${esc(q)}</span></div>
+ <div style="font-size:10px;color:#66737f;margin-top:3px">Demo note: this simulator uses simple keyword overlap. Production RAG commonly uses vector similarity and may also use keyword/hybrid retrieval, filters and reranking.</div>
+ ${ranked.map((r,i)=>`<div class="result"><div class="rhead"><span>${i+1}. ${r.d.title}</span><span class="score">${Math.round(r.s*100)}% demo relevance</span></div><p>${r.d.text}</p></div>`).join("")}`;
+ return ranked;
+}
+function generate(){
+ const q=document.getElementById("q").value.trim(),ranked=retrieve();if(!ranked)return;
+ const best=ranked[0].d;let title="No sufficiently relevant evidence found.",answer="The knowledge base does not contain enough relevant information to provide a grounded answer.";
+ const x=q.toLowerCase();
+ if(best.title==="Remote Work Policy" && /remote|home|wfh|days/.test(x)){title="Up to 3 remote-work days per week.";answer="According to the retrieved Remote Work Policy, employees can work remotely up to 3 days per week. Manager approval is required for exceptions."}
+ else if(best.title==="Leave Policy" && /leave|vacation|annual/.test(x)){title="24 annual leave days.";answer="According to the retrieved Leave Policy, employees receive 24 annual leave days, with requests normally submitted 5 working days in advance."}
+ else if(best.title==="Expense Policy" && /expense|travel|receipt|claim/.test(x)){title="Submit business travel expenses within 30 days.";answer="According to the retrieved Expense Policy, business travel expenses must be submitted within 30 days, and receipts are required for claims above the defined threshold."}
+ document.getElementById("augText").textContent=`Retrieved context: [${best.title}] ${best.text}  +  User question: ${q}`;
+ document.getElementById("aug").style.display="block";document.getElementById("ansTitle").textContent=title;document.getElementById("ansText").textContent=answer;document.getElementById("ans").style.display="block";
+ step=5;paint();document.getElementById("next").disabled=true;document.getElementById("next").textContent="Pipeline complete ✓";
+ document.getElementById("explain").innerHTML="<strong>RAG complete</strong><span>Retrieved evidence was added as context. The LLM's job is generation: it turns that context + the question into a useful answer.</span>";
+}
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+renderDocs();paint();
+</script>
+</body>
+</html>
